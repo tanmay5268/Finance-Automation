@@ -32,16 +32,15 @@ The **Finance Dashboard** is a web application built using **Streamlit** that al
 3. **Interactive Dashboard**:
    - Displays debit and credit transactions in separate tabs for easy navigation.
 
----
 
-## Installation
-
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
-
-### Steps
-1. Clone the repository:
+Clone the repository:
    ```bash
-   git clone https://github.com/your-username/finance-dashboard.git
-   cd finance-dashboard
+   git clone https://github.com/tanmay5268/Finance-Automation.git
+   cd Finance-Automation
+
+finance-dashboard/
+│
+├──                   # Main Streamlit app
+├──  # Sample bank statement for testing
+├──          # Python dependencies
+└──                 # Project documentation
