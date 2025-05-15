@@ -26,4 +26,6 @@ model.fit(X_train,y_train)
 #6:testing phase
 scores=model.score(X_test,y_test)
 print(f"Model accuracy: {scores*100}%")
+joblib.dump(model,"transaction_categorizer.pkl")
+joblib.dump(vectorizer,"vectorizer.pkl")
 
