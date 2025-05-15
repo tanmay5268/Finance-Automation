@@ -59,6 +59,10 @@ def main():
                     st.write(credit_df)
                     total_credits = credit_df["Amount"].sum()
                     st.metric(label="Total credits", value=f"{total_credits}")
+                fig = px.bar(x=[f"Credits={total_credits}",f"Debits={total_debits}"],
+                y=[total_credits,total_debits],labels={"x":"Transaction Type","y": "Total Amount"},
+                title="DEBIT VS CREDIT")
+                st.plotly_chart(fig)
             elif option == "Filter by Categories":
                 #prediction for details column
                 df["Category"]= predict_categories(df["Details"])#abh iske under ai prediction ho chuki hai
@@ -66,18 +70,26 @@ def main():
                 categories = df["Category"].unique()
                 selected_category = st.selectbox("select category to filter",categories)
                 filtered_df= df[df["Category"]==selected_category]
+                total_amount = filtered_df["Amount"].sum()
                 st.write(filtered_df)
+                st.metric(label="TOTAL",value=f"{total_amount}")
             elif option == "Pie Chart Summarizer":
-                
-                try:
-                        # Pie chart summarizing spending by category
-                    category_summary = df.groupby("Category")["Amount"].sum().reset_index()
-                    fig = px.pie(category_summary, values="Amount", names="Category", title="Spending by Category")
-                except Exception as e:
-                    print(f"{e}")
-                finally:
-                    st.plotly_chart(fig)
-                
+                # Group data by category and calculate total spending per category
+                df["Category"] = predict_categories(df["Details"])  # Ensure categories are predicted
+                category_summary = df.groupby("Category")["Amount"].sum().reset_index()
+
+                # Create a pie chart using Plotly
+                fig = px.pie(category_summary, values="Amount", names="Category", title="Spending by Category")
+                st.plotly_chart(fig)
+                # Ensure the Date column is sorted
+                df = df.sort_values("Date")
+
+                # Group by date and calculate daily spending
+                daily_spending = df.groupby("Date")["Amount"].sum().reset_index()
+
+                # Create a line chart
+                fig = px.line(daily_spending, x="Date", y="Amount", title="Spending Over Time")
+                st.plotly_chart(fig)
 #------------------------------------------------
 if __name__ == "__main__":
     main()
