@@ -31,16 +31,16 @@ The **Finance Dashboard** is a web application built using **Streamlit** that al
 
 3. **Interactive Dashboard**:
    - Displays debit and credit transactions in separate tabs for easy navigation.
-
-
-Clone the repository:
-   ```bash
-   git clone https://github.com/tanmay5268/Finance-Automation.git
-   cd Finance-Automation
-
-finance-dashboard/
+     
+4. **overview**:
+   -finance-dashboard/
 │
 ├──                   # Main Streamlit app
 ├──  # Sample bank statement for testing
 ├──          # Python dependencies
 └──                 # Project documentation
+
+Clone the repository:
+   ```bash
+   git clone https://github.com/tanmay5268/Finance-Automation.git
+   cd Finance-Automation
